@@ -5,7 +5,7 @@ plugin.exports = class PixivBookSource {
     static NAME = "Pixiv 小说源";
     static VERSION = "1.0.0";
     static VERSION_CODE = 1;
-    static PLUGIN_FILE_URL = "pixiv.ts.js";
+    static PLUGIN_FILE_URL = "https://raw.githubusercontent.com/Cola-Pig1121/csp-s/refs/heads/main/pixiv.ts.js";
     static BASE_URL = "https://www.pixiv.net";
 
     constructor({ request, store, cheerio, nanoid }: { request: any; store: any; cheerio: any; nanoid: any }) {
