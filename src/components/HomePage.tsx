@@ -4,6 +4,11 @@ import React, { useEffect, useState } from "react"
 import { Button } from "../components/ui/button"
 import { Play, Pause, Volume2, VolumeX, ChevronDown } from "lucide-react"
 import ShinyText from './ShinyText/ShinyText';
+import SplitText from "./SplitText/SplitText";
+
+const handleAnimationComplete = () => {
+  console.log('All letters have animated!');
+};
 
 export default function HomePage() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -70,9 +75,24 @@ export default function HomePage() {
         <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
           <div className={`transition-all duration-1000 ${showContent ? "animate-fade-in-up opacity-100" : "opacity-0"}`}>
             <ShinyText text="SINGULARITY VOICES" disabled={false} speed={3} className='text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text SingularityVoices' />
-            <p className="text-2xl md:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            {/* <p className="text-2xl md:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Experience the future of voice technology where human expression meets artificial intelligence
-            </p>
+            </p> */}
+
+            <SplitText
+              text="Experience the future of voice technology where human expression meets artificial intelligence"
+              className="text-2xl md:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed"
+              delay={300}
+              duration={0.6}
+              ease="power3.out"
+              splitType="words"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+              onLetterAnimationComplete={handleAnimationComplete}
+            />
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
