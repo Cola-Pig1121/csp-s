@@ -1,6 +1,31 @@
-# csp-s
-CSP-S初赛知识点整理
+这个项目是官网 landing page， 这个页面只有当真正的官网在维护或者更新时才使用。开源project
 
-不包含基本算法、完善程序、阅读程序等项目。
+目前已完成✅
 
-PS:仅整理一些易错或易遗忘的知识点，如进制转换等知识点不再提及。
+
+## Setup
+
+Make sure to install dependencies:
+
+```bash
+# npm
+npm install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+```

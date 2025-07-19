@@ -1,0 +1,75 @@
+.div {
+  width: 100%;
+  position: relative;
+  background-color: #000;
+  overflow: hidden;
+  text-align: left;
+  font-size: 64px;
+  color: #fff;
+}
+
+.aboutUsContainer {
+  position: absolute;
+  top: 221px;
+  left: 114px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 35px;
+  font-size: 32px;
+  color: #c396ed;
+  width: auto;
+}
+
+.aboutUs {
+  letter-spacing: -0.05em;
+  line-height: 110%;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.groupChild {
+  width: 23.7px;
+  height: 23.7px;
+  object-fit: contain;
+}
+
+.theHumanVooooiceContainer {
+  position: absolute;
+  top: 264px;
+  left: 114px;
+  width: 835px;
+  font-size: 32px;
+  line-height: 150%;
+  font-weight: 600;
+  color: white;
+}
+
+.humanVooooice {
+  font-weight: 600;
+  color: #a871e3;
+}
+
+.weAreAContainer {
+  position: absolute;
+  top: 434px;
+  left: 110px;
+  font-size: 24px;
+  line-height: 160%;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 996px;
+  height: auto;
+}
+
+.weAreAContainer p {
+  margin: 0;
+}
+
+.child {
+  position: absolute;
+  top: 1px;
+  left: 1258px;
+}

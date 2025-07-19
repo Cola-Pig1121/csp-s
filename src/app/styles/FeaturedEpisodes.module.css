@@ -1,0 +1,113 @@
+.featuredEpisodes1 {
+    position: absolute;
+    top: 0px;
+    left: 33px;
+    letter-spacing: -0.05em;
+    line-height: 110%;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.groupChild {
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    width: 23.7px;
+    height: 23.7px;
+    object-fit: contain;
+}
+
+.featuredEpisodesParent {
+    position: absolute;
+    top: 95px;
+    left: 109px;
+    width: 285px;
+    height: 35px;
+}
+
+.groupInner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    width: 468px;
+    height: 295px;
+    object-fit: cover;
+}
+
+.aiYouthEntrepreneur {
+    position: absolute;
+    top: 305px;
+    left: 0px;
+    letter-spacing: -0.05em;
+    display: flex;
+    align-items: center;
+    width: 431px;
+}
+
+.watchOnYoutube {
+    position: absolute;
+    top: 391px;
+    left: 0px;
+    font-size: 24px;
+    letter-spacing: -0.05em;
+    line-height: 110%;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.rectangleParent {
+    width: 468px;
+    position: relative;
+    height: 417px;
+}
+
+.comingSoon {
+    position: absolute;
+    top: 308px;
+    left: 0px;
+    letter-spacing: -0.05em;
+    line-height: 110%;
+}
+
+.watchOnYoutube1 {
+    position: absolute;
+    top: 351px;
+    left: 0px;
+    font-size: 24px;
+    letter-spacing: -0.05em;
+    line-height: 110%;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.rectangleGroup {
+    width: 468px;
+    position: relative;
+    height: 377px;
+}
+
+.groupParent {
+    position: absolute;
+    top: 200px;
+    left: 103px;
+    height: 462px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 40px;
+    color: #fff;
+}
+
+.featuredEpisodes {
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #000;
+    height: 742px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 32px;
+    color: #c396ed;
+}
