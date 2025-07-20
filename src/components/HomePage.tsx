@@ -1,189 +1,165 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import { Button } from "../components/ui/button"
-import { Play, Pause, Volume2, VolumeX, ChevronDown } from "lucide-react"
-import ShinyText from './ShinyText/ShinyText';
-import SplitText from "./SplitText/SplitText";
+import { useState, useEffect, useRef, FunctionComponent } from "react";
+import { motion, Variants } from "framer-motion";
+import StarBorder from './StarBorder/StarBorder';
+import { X, ArrowUpRight } from "lucide-react";
 
-const handleAnimationComplete = () => {
-  console.log('All letters have animated!');
+const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (delay: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: { delay, duration: 0.5, ease: "easeOut" },
+    }),
 };
 
-export default function HomePage() {
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isMuted, setIsMuted] = useState(true)
-  const [showContent, setShowContent] = useState(false)
+const pathVariants: Variants = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (delay: number) => ({
+        pathLength: 1,
+        opacity: 1,
+        transition: { delay, duration: 1.5, ease: "easeInOut" },
+    }),
+};
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowContent(true)
-    }, 500)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  const togglePlay = () => {
-    const video = document.getElementById("hero-video") as HTMLVideoElement
-    if (video) {
-      if (isPlaying) {
-        video.pause()
-      } else {
-        video.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
-  }
-
-  const toggleMute = () => {
-    const video = document.getElementById("hero-video") as HTMLVideoElement
-    if (video) {
-      video.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
-  const scrollToContent = () => {
-    const contentSection = document.getElementById("content-section")
-    if (contentSection) {
-      contentSection.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
-  return (
-    <div className="bg-black text-white overflow-hidden">
-
-      {/* Hero Section with Video */}
-      <div id="home" className="relative h-screen flex items-center justify-center pt-16">
-        {/* Background Video */}
-        <video
-          id="hero-video"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-        >
-          <source src="/sv.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
-
-        {/* Content Overlay */}
-        <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-          <div className={`transition-all duration-1000 ${showContent ? "animate-fade-in-up opacity-100" : "opacity-0"}`}>
-            <ShinyText text="SINGULARITY VOICES" disabled={false} speed={3} className='text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text SingularityVoices' />
-            {/* <p className="text-2xl md:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Experience the future of voice technology where human expression meets artificial intelligence
-            </p> */}
-
-            <SplitText
-              text="Experience the future of voice technology where human expression meets artificial intelligence"
-              className="text-2xl md:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed"
-              delay={300}
-              duration={0.6}
-              ease="power3.out"
-              splitType="words"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              textAlign="center"
-              onLetterAnimationComplete={handleAnimationComplete}
-            />
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                className="border border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Get Started
-              </Button>
-              <Button
-                size="lg"
-                className="border border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Learn More
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Video Controls */}
-        <div className="absolute bottom-8 left-8 z-20 flex gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="bg-black/50 hover:bg-black/70 text-white border border-white/20"
-            onClick={togglePlay}
-          >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="bg-black/50 hover:bg-black/70 text-white border border-white/20"
-            onClick={toggleMute}
-          >
-            {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-          </Button>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="animate-pulse-slow text-white/70 hover:bg-white hover:text-black transition-all duration-300"
-            onClick={scrollToContent}
-          >
-            <ChevronDown className="h-6 w-6" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Content Section */}
-      <div id="content-section" className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Revolutionary Voice Technology
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Discover how Singularity Voices is transforming the way we interact with technology through advanced voice synthesis and natural language processing.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-800/50 p-8 rounded-lg backdrop-blur-sm border border-gray-700/50 transition-all duration-500 hover:scale-105">
-              <h3 className="text-2xl font-semibold mb-4 text-white">Advanced AI</h3>
-              <p className="text-gray-400">
-                Cutting-edge artificial intelligence that understands context, emotion, and nuance in human speech.
-              </p>
-            </div>
-            <div className="bg-gray-800/50 p-8 rounded-lg backdrop-blur-sm border border-gray-700/50 transition-all duration-500 hover:scale-105">
-              <h3 className="text-2xl font-semibold mb-4 text-white">Natural Voices</h3>
-              <p className="text-gray-400">
-                Synthesized voices that are indistinguishable from human speech, with perfect intonation and expression.
-              </p>
-            </div>
-            <div className="bg-gray-800/50 p-8 rounded-lg backdrop-blur-sm border border-gray-700/50 transition-all duration-500 hover:scale-105">
-              <h3 className="text-2xl font-semibold mb-4 text-white">Real-time Processing</h3>
-              <p className="text-gray-400">
-                Lightning-fast processing that enables seamless, real-time voice interactions and responses.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center mt-16">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-200 transition-all duration-300">
-              Experience the Future
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+interface PathState {
+    path1: string;
+    path2: string;
 }
+
+const RoadMap: FunctionComponent = () => {
+    const [paths, setPaths] = useState<PathState>({ path1: "", path2: "" });
+    const [isVisible, setIsVisible] = useState(false);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+    const btn1Ref = useRef<HTMLDivElement>(null);
+    const btn2Ref = useRef<HTMLDivElement>(null);
+    const btn3Ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setIsVisible(true), 100);
+
+        const updatePaths = () => {
+            if (containerRef.current && btn1Ref.current && btn2Ref.current && btn3Ref.current) {
+                const containerRect = containerRef.current.getBoundingClientRect();
+                const rect1 = btn1Ref.current.getBoundingClientRect();
+                const rect2 = btn2Ref.current.getBoundingClientRect();
+                const rect3 = btn3Ref.current.getBoundingClientRect();
+
+                const createSymmetricalSPath = (startRect: DOMRect, endRect: DOMRect, depth: number) => {
+                    const startX = startRect.right - containerRect.left;
+                    const startY = startRect.top + startRect.height / 2 - containerRect.top;
+                    const endX = endRect.left - containerRect.left;
+                    const endY = endRect.top + endRect.height / 2 - containerRect.top;
+
+                    const horizontalDistance = endX - startX;
+                    const cp1x = startX + horizontalDistance * 0.25;
+                    const cp2x = endX - horizontalDistance * 0.25;
+
+                    const cp1y = startY + depth;
+                    const cp2y = endY + depth;
+
+                    return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                };
+
+                const path1D = createSymmetricalSPath(rect1, rect2, 120);
+                const path2D = createSymmetricalSPath(rect2, rect3, 120);
+                setPaths({ path1: path1D, path2: path2D });
+            }
+        };
+
+        requestAnimationFrame(updatePaths);
+        window.addEventListener("resize", updatePaths);
+
+        return () => {
+            window.removeEventListener("resize", updatePaths);
+            clearTimeout(timer);
+        };
+    }, []);
+
+    const animationSequence = isVisible ? "visible" : "hidden";
+
+    return (
+        <div ref={containerRef} className="relative w-screen h-screen bg-[#6700c6] overflow-hidden font-sans text-white">
+
+            <motion.div
+                className="absolute top-6 left-6 md:top-10 md:left-12 flex items-center gap-2 text-xl md:text-2xl text-purple-300 opacity-90 z-20"
+                custom={0} initial="hidden" animate={animationSequence} variants={itemVariants}
+            >
+                <X size={20} />
+                <span>Our Roadmap</span>
+            </motion.div>
+
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
+                <motion.path
+                    d={paths.path1} fill="none" stroke="white" strokeWidth="6" strokeLinecap="round"
+                    custom={0.8} initial="hidden" animate={animationSequence} variants={pathVariants}
+                />
+                <motion.path
+                    d={paths.path2} fill="none" stroke="white" strokeWidth="6" strokeLinecap="round"
+                    custom={1.0} initial="hidden" animate={animationSequence} variants={pathVariants}
+                />
+            </svg>
+
+            <div className="absolute inset-0 pt-[15vh] pb-[35vh] px-[8vw] flex flex-col justify-around z-20">
+                <motion.div
+                    ref={btn1Ref}
+                    className="self-start"
+                    custom={0.2} initial="hidden" animate={animationSequence} variants={itemVariants}
+                >
+                    <StarBorder as="button" color="white" speed="5s">
+                        Content
+                    </StarBorder>
+                </motion.div>
+
+                <motion.div
+                    ref={btn2Ref}
+                    className="self-center"
+                    custom={0.4} initial="hidden" animate={animationSequence} variants={itemVariants}
+                >
+                    <StarBorder as="button" color="white" speed="5s">
+                        Community
+                    </StarBorder>
+                </motion.div>
+
+                <motion.div
+                    ref={btn3Ref}
+                    className="self-end"
+                    custom={0.6} initial="hidden" animate={animationSequence} variants={itemVariants}
+                >
+                    <StarBorder as="button" color="white" speed="5s">
+                        Spaces
+                    </StarBorder>
+                </motion.div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 pb-12 flex flex-col items-start gap-y-6 md:gap-y-8 z-20">
+                <motion.div
+                    className="w-full grid grid-cols-[max-content_1fr] gap-x-3 items-baseline"
+                    custom={1.4} initial="hidden" animate={animationSequence} variants={itemVariants}
+                >
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-extralight leading-tight whitespace-nowrap">
+                        Starting from
+                    </p>
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-extralight leading-tight">
+                        <span className="font-semibold text-purple-300">Sound,</span>
+                    </p>
+                    <p className="col-start-2 text-2xl sm:text-3xl lg:text-4xl font-extralight leading-tight">
+                        we extend into the real world – a community of talented minds. In the near future, we plan to build offline spaces for creating.
+                    </p>
+                </motion.div>
+
+                <motion.a
+                    href="#"
+                    className="inline-flex items-center gap-2 text-lg sm:text-xl lg:text-2xl text-purple-300 underline underline-offset-4 hover:text-white transition-colors"
+                    custom={1.6} initial="hidden" animate={animationSequence} variants={itemVariants}
+                >
+                    Meet Singularity Team <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
+                </motion.a>
+            </div>
+        </div>
+    );
+};
+
+export default RoadMap;

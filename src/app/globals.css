@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap');
 
-body {
-  margin: 0;
-  line-height: normal;
-}
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -49,6 +46,17 @@ body {
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    line-height: normal;
+  }
+
+  * {
+    border-color: var(--border);
   }
 }
 
